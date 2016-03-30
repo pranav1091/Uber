@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<database>
+  <Location>
+    <Latitute>33.7994</Latitute>
+    <Longitude>-118.1656</Longitude>
+  </Location>
+  <Location>
+    <Latitute>33.7830</Latitute>
+    <Longitude>-118.1129</Longitude>
+  </Location>
+  <Location>
+    <Latitute>33.747877</Latitute>
+    <Longitude>-118.192676</Longitude>
+  </Location>
+  <Location>
+    <Latitute>33.774813</Latitute>
+    <Longitude>-118.180768</Longitude>
+  </Location>
+  <Location>
+    <Latitute>33.788557</Latitute>
+    <Longitude>-118.129733</Longitude>
+  </Location>
+  <Location>
+    <Latitute>33.795852</Latitute>
+    <Longitude>-118.134632</Longitude>
+  </Location>
+  <Location>
+    <Latitute>33.792289</Latitute>
+    <Longitude>-118.139327</Longitude>
+  </Location>
+  <Location>
+    <Latitute>33.774134</Latitute>
+    <Longitude>-118.107481</Longitude>
+  </Location>
+</database>

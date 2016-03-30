@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="DBProjectDatabase" Class="DataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|\Database.mdf;Initial Catalog=DBProjectDatabase;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="DBProjectDatabaseConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Driver" Member="Drivers">
+    <Type Name="Driver">
+      <Column Name="Driver_ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="User_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Driver_Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Driver_Trip" Member="Trips" ThisKey="Driver_ID" OtherKey="Driver_ID" Type="Trip" />
+      <Association Name="Sign_Up_table_Driver" Member="Sign_Up_table" ThisKey="User_ID" OtherKey="User_id" Type="Sign_Up_table" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Lgn_Table" Member="Lgn_Tables">
+    <Type Name="Lgn_Table">
+      <Column Name="User_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Username" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Role" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Sign_Up_table_Lgn_Table" Member="Sign_Up_table" ThisKey="User_id" OtherKey="User_id" Type="Sign_Up_table" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Rider" Member="Riders">
+    <Type Name="Rider">
+      <Column Name="Rider_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Rider_Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="User_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Rider_Trip" Member="Trips" ThisKey="Rider_ID" OtherKey="Rider_ID" Type="Trip" />
+      <Association Name="Sign_Up_table_Rider" Member="Sign_Up_table" ThisKey="User_ID" OtherKey="User_id" Type="Sign_Up_table" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Trips" Member="Trips">
+    <Type Name="Trip">
+      <Column Name="Trip_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Rider_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Driver_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Pickup" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Driver" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Fare" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Car" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="City" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Payment_Method" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Driver_Trip" Member="Driver1" ThisKey="Driver_ID" OtherKey="Driver_ID" Type="Driver" IsForeignKey="true" />
+      <Association Name="Rider_Trip" Member="Rider" ThisKey="Rider_ID" OtherKey="Rider_ID" Type="Rider" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Sign_Up_table" Member="Sign_Up_tables">
+    <Type Name="Sign_Up_table">
+      <Column Name="User_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="First_Name" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Last_Name" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Username" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Phone_Number" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Role" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="E_Mail_ID" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Card_Number" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CVV_Number" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Exp_Date" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Postal_Code" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Sign_Up_table_Driver" Member="Drivers" ThisKey="User_id" OtherKey="User_ID" Type="Driver" />
+      <Association Name="Sign_Up_table_Lgn_Table" Member="Lgn_Tables" ThisKey="User_id" OtherKey="User_id" Type="Lgn_Table" />
+      <Association Name="Sign_Up_table_Rider" Member="Riders" ThisKey="User_id" OtherKey="User_ID" Type="Rider" />
+    </Type>
+  </Table>
+  <Function Name="dbo.CheckIt" Method="CheckIt">
+    <Parameter Name="username" Type="System.String" DbType="VarChar(50)" />
+    <ElementType Name="CheckItResult">
+      <Column Name="Username" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.CheckLogin" Method="CheckLogin">
+    <Parameter Name="username" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="password" Type="System.String" DbType="VarChar(50)" />
+    <ElementType Name="CheckLoginResult">
+      <Column Name="User_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Username" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.InsertUserLogin" Method="InsertUserLogin">
+    <Parameter Name="First_Name" Parameter="first_Name" Type="System.String" DbType="Text" />
+    <Parameter Name="Last_Name" Parameter="last_Name" Type="System.String" DbType="Text" />
+    <Parameter Name="Username" Parameter="username" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Phone_Number" Parameter="phone_Number" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Role" Parameter="role" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="E_Mail_ID" Parameter="e_Mail_ID" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Password" Parameter="password" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Card_Number" Parameter="card_Number" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="CVV_Number" Parameter="cVV_Number" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Exp_Date" Parameter="exp_Date" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Postal_Code" Parameter="postal_Code" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.CheckEmail" Method="CheckEmail">
+    <Parameter Name="email_id" Type="System.String" DbType="VarChar(50)" />
+    <ElementType Name="CheckEmailResult">
+      <Column Name="E_Mail_ID" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+</Database>
